@@ -1,0 +1,31 @@
+#include "MetronomeLCD.h"
+
+void MetronomeLCD::updateTempo(){
+    int newTempo = model->getTempo();
+    if(newTempo != tempo){
+        str[0] = "Tempo : " + String(newTempo);
+        tempo = newTempo;
+        isChanged = true;
+    }
+}
+
+void MetronomeLCD::updateRhythm(){
+    int newRhythm = model->getRhythm();
+    if(newRhythm != rhythm){
+        str[1] = "Rhythm : " + String(newRhythm);
+        rhythm = newRhythm;
+        isChanged = true;
+    }
+}
+
+void MetronomeLCD::update(){
+    isChanged = false;
+    updateTempo();
+    updateRhythm();
+    if(isChanged){
+        lcd.setCursor(0, 0);
+        lcd.print(str[0]);
+        lcd.setCursor(0, 1);
+        lcd.print(str[1]);
+    }
+}
