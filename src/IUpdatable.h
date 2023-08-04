@@ -1,9 +1,6 @@
-#ifndef __IUPDATABLE_H__
-#define __IUPDATABLE_H__
+#pragma once
 
 class IUpdatable {
 public:
     virtual void update() = 0;
 };
-
-#endif
