@@ -11,5 +11,5 @@ public:
 private:
     int rhythm;
     int tempo;
-    bool enable;
+    bool enable; 
 };
