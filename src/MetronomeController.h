@@ -10,11 +10,11 @@ private:
     IUpdatable** updatables;
 
 public:
-    MetronomeController(){
-        updatables = (IUpdatable**)malloc(sizeof(IUpdatable**)*2);
-        
+    MetronomeController(unsigned long* _time){
+        updatables = (IUpdatable**)malloc(sizeof(IUpdatable*)*2);
+        updatables[0] = new LCD(1, 2, 16);
+        updatables[1] = new Neopixel(1, 3, nullptr, _time);
     }
-
 
     void update(){
         // 여기서 값 체크 
