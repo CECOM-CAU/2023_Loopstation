@@ -1,3 +1,6 @@
+#ifndef __METRONOME_MODEL_H__
+#define __METRONOME_MODEL_H__
+
 class MetronomeModel{
 public:
     void setRhythm(int);
@@ -13,3 +16,5 @@ private:
     int tempo;
     bool enable; 
 };
+
+#endif

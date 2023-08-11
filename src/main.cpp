@@ -4,17 +4,18 @@
 
 #include "MetronomeController.h"
 
-const int address = 0x3F;
-LiquidCrystal_I2C lcd(address, 16, 2);
-
-MetronomeController controller;
+MetronomeController* controller;
 unsigned long* millisec; 
+unsigned long t;
 
 void setup() {
-  controller = MetronomeController(millisec);
+  Serial.begin(9600);
+  t = millis();
+  millisec = &t;
+  controller = new MetronomeController(millisec);
 }
 
 void loop() {
   *millisec = millis();
-  controller.update();
+  controller->update();
 }
