@@ -2,18 +2,24 @@
 #include "Neopixel.h"
 #include "MetronomeModel.h"
 #include "LCD.h"
+#include "MetronomeLCD.h"
 
 class MetronomeController : public IUpdatable{
 private:
     MetronomeModel model;
 
     IUpdatable** updatables;
+    unsigned long* time;
 
 public:
     MetronomeController(unsigned long* _time){
         updatables = (IUpdatable**)malloc(sizeof(IUpdatable*)*2);
-        updatables[0] = new LCD(1, 2, 16);
-        updatables[1] = new Neopixel(1, 3, nullptr, _time);
+        
+        time = _time;
+        
+        model = MetronomeModel();
+        updatables[0] = new MetronomeLCD(&model);
+        updatables[1] = new Neopixel(1, 3, nullptr, time);
     }
 
     void update(){
