@@ -25,10 +25,8 @@ public:
         pinMode(sw_pin, INPUT_PULLUP);
 
         prev_clk_val = digitalRead(clk_pin);
-
-        attachInterrupt(digitalPinToInterrupt(clk_pin), (void (*))(this->getRotate), CHANGE);
     }
 
-    void getRotate();
+    int getRotate();
 };
 #endif

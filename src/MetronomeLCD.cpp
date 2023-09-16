@@ -19,20 +19,22 @@ void MetronomeLCD::updateRhythm(){
 }
 
 void MetronomeLCD::update(){
-    Serial.println("METRONOME_UPDATE");
-    if((*time - startTime) < 500){
+    if((*time - startTime) > 100){
         startTime = *time;
     }
-    isChanged = true;
+    else{
+        return;
+    }
+    isChanged = false;
     updateTempo();
     updateRhythm();
     if(isChanged){
+        lcd->clear();
         lcd->setCursor(0, 0);
         lcd->print(str[0].c_str());
-        Serial.println(str[0]);
+        // Serial.println(str[0]);
         lcd->setCursor(0, 1);
         lcd->print(str[1].c_str());
-        Serial.println(str[1]);
-        delay(1000);
+        // Serial.println(str[1]);
     }
 }
