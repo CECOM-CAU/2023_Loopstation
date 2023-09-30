@@ -5,9 +5,7 @@
 #include "MetronomeModel.h"
 #include "Adafruit_NeoPixel.h"
 
-#define NEO_PIN   2      // 네오픽셀 DI핀과 연결된 핀번호 설정
 #define NUM_LEDS  16     // 네오픽셀 LED 갯수 설정
-
 
 class Neopixel : public IUpdatable{
 private:
@@ -17,6 +15,8 @@ private:
     
     MetronomeModel* model;
     unsigned long* time;
+    unsigned long startTime;
+    Adafruit_NeoPixel* pixels;
 
 
 public: 

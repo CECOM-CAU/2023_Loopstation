@@ -34,7 +34,7 @@ private:
         model.setRhythm(4);
 
         updatables[0] = new MetronomeLCD(&model, time);
-        // updatables[1] = new Neopixel(1, 3, &model, time);
+        updatables[1] = new Neopixel(1, 3, &model, time);
 
         tempoEncoder = new BasicRotaryEncoder(20, 39, 37);
         attachInterrupt(20, tempoISR, CHANGE);
