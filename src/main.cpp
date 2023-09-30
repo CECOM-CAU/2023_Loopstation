@@ -12,10 +12,12 @@ void setup() {
   Serial.begin(9600);
   t = millis();
   millisec = &t;
-  controller = new MetronomeController(millisec);
+
+  controller = MetronomeController::getInstance(millisec);
 }
 
 void loop() {
   *millisec = millis();
   controller->update();
 }
+
