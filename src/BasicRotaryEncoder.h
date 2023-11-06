@@ -31,6 +31,6 @@ public:
         prev_clk_val = digitalRead(clk_pin);
     }
 
-    int getRotate();
+    // int getRotate();
 };
 #endif

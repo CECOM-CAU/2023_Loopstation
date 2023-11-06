@@ -1,21 +1,28 @@
 #include "MetronomeController.h"
 
+MetronomeController* MetronomeController::instance = new MetronomeController();
+
 void MetronomeController::update(){
-    int te_val = tempoEncoder->getRotate();
-    int re_val = rhythmEncoder->getRotate();
+    // static unsigned long t = (*time);
+    // if((*time) - t > 1000){
+    //     t = (*time);
+    //     Serial.println("MC update");
+    // }
+    // int te_val = tempoEncoder->getRotate();
+    // int re_val = rhythmEncoder->getRotate();
 
     // 여기서 값 체크 
-    if(te_val == CLOCK_WISE){
-        model.setTempo(model.getTempo() + 1);
-    }else if(te_val == COUNTER_CLOCK_WISE){
-        model.setTempo(model.getTempo() - 1);
-    }
+    // if(te_val == CLOCK_WISE){
+    //     model.setTempo(model.getTempo() + 1);
+    // }else if(te_val == COUNTER_CLOCK_WISE){
+    //     model.setTempo(model.getTempo() - 1);
+    // }
 
-    if(re_val == CLOCK_WISE){
-        model.setRhythm(model.getRhythm() + 1);
-    }else if(re_val == COUNTER_CLOCK_WISE){
-        model.setRhythm(model.getRhythm() - 1);
-    }
+    // if(re_val == CLOCK_WISE){
+    //     model.setRhythm(model.getRhythm() + 1);
+    // }else if(re_val == COUNTER_CLOCK_WISE){
+    //     model.setRhythm(model.getRhythm() - 1);
+    // }
 
     //여기서 조건 보고 상황에 맞게 업데이트
     for(int i = 0; i < 1; i++){
