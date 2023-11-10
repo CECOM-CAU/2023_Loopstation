@@ -45,7 +45,7 @@ private:
             lcd->reset(time);
         }
         updatables[0] = lcd;
-        // updatables[1] = new Neopixel(1, 3, &model, time);
+        updatables[1] = new Neopixel(7, 3, &model, time);
 
         Serial.println("MC init middle");
 

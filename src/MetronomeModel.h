@@ -3,17 +3,17 @@
 
 class MetronomeModel{
 public:
-    void setRhythm(int);
-    void setTempo(int);
+    void setRhythm(float);
+    void setTempo(float);
     void setEnable(bool);
 
-    int getRhythm();
-    int getTempo();
+    float getRhythm();
+    float getTempo();
     bool isEnable();
 
 private:
-    int rhythm;
-    int tempo;
+    float rhythm;
+    float tempo;
     bool enable; 
 };
 
