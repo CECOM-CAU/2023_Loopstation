@@ -12,6 +12,9 @@
 #define CLOCK_WISE BasicRotaryEncoder::CLOCK_WISE
 #define COUNTER_CLOCK_WISE BasicRotaryEncoder::COUNTER_CLOCK_WISE
 
+void tempoISR();
+void rhythmISR();
+
 class MetronomeController : public IUpdatable{
 private:
     MetronomeModel model;
@@ -22,10 +25,9 @@ private:
     BasicRotaryEncoder* tempoEncoder;
     BasicRotaryEncoder* rhythmEncoder;
     static MetronomeController* instance;
-    MetronomeController(unsigned long* _time){
+
+    void init(){
         updatables = (IUpdatable**)malloc(sizeof(IUpdatable*)*2);
-        
-        time = _time;
         
         model = MetronomeModel();
 
@@ -36,16 +38,30 @@ private:
         updatables[0] = new MetronomeLCD(&model, time);
         updatables[1] = new Neopixel(1, 3, &model, time);
 
-        tempoEncoder = new BasicRotaryEncoder(20, 39, 37);
-        attachInterrupt(20, tempoISR, CHANGE);
-        rhythmEncoder = new BasicRotaryEncoder(21, 51, 49);
-        attachInterrupt(21, rhythmISR, CHANGE);
+        tempoEncoder = new BasicRotaryEncoder(18, 39, 37);
+        attachInterrupt(18, tempoISR, CHANGE);
+        rhythmEncoder = new BasicRotaryEncoder(19, 51, 49);
+        attachInterrupt(19, rhythmISR, CHANGE);
+    }
+
+    MetronomeController(unsigned long* _time){
+        time = _time;
+        init();
+    }
+    MetronomeController(){
+        init();
     }
 
     friend void tempoISR();
     friend void rhythmISR();
 
-public:    
+public:  
+    static MetronomeController* getInstance(){
+        if(instance == nullptr){
+            instance = new MetronomeController();
+        }
+        return instance;
+    }  
     static MetronomeController* getInstance(unsigned long* _time){
         if(instance == nullptr){
             instance = new MetronomeController(_time);
@@ -55,14 +71,9 @@ public:
         }
         return instance;
     }
-    static MetronomeController* getInstance(){
-        return instance;
-    }
+
 
     void update();
 };
-
-void tempoISR();
-void rhythmISR();
 
 #endif
