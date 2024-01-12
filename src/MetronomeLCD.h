@@ -20,17 +20,22 @@ private:
     unsigned long* time;
     unsigned long startTime;
 public:
+    void reset(unsigned long* _time){
+        time = _time;
+        startTime = *time;
+    }
+
     MetronomeLCD(MetronomeModel* _model , unsigned long* _time): BasicLCD(){
         model = _model;
         time = _time;
-        startTime = millis();
+        startTime = *time;
     }
     MetronomeLCD(MetronomeModel* _model, byte _addr, int _row, int _col, unsigned long* _time)
     : BasicLCD(_addr, _row, _col){
         addr = _addr;
         model = _model;
         time = _time;
-        startTime = millis();
+        startTime = *time;
     }
 
     void update();

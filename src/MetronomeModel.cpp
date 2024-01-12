@@ -1,16 +1,16 @@
 #include"MetronomeModel.h"
 
-void MetronomeModel::setRhythm(int _rhythm)
+void MetronomeModel::setRhythm(float _rhythm)
 {
     this -> rhythm = _rhythm;
 }
 
-int MetronomeModel::getRhythm()
+float MetronomeModel::getRhythm()
 {
     return rhythm;
 }
 
-void MetronomeModel::setTempo(int _tempo)
+void MetronomeModel::setTempo(float _tempo)
 {
     this -> tempo = _tempo;
 }
@@ -20,7 +20,7 @@ void MetronomeModel::setEnable(bool _isenable)
     this -> enable = _isenable;
 }
 
-int MetronomeModel::getTempo()
+float MetronomeModel::getTempo()
 {
     return tempo;
 }
